@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="110" fill="#111827"/>
+  <polyline points="90,350 170,270 235,315 330,185 420,115"
+            fill="none"
+            stroke="#22c55e"
+            stroke-width="38"
+            stroke-linecap="round"
+            stroke-linejoin="round"/>
+  <polyline points="330,185 420,115 405,205"
+            fill="none"
+            stroke="#22c55e"
+            stroke-width="38"
+            stroke-linecap="round"
+            stroke-linejoin="round"/>
+  <text x="256" y="455"
+        text-anchor="middle"
+        font-family="Arial, sans-serif"
+        font-size="72"
+        font-weight="bold"
+        fill="white">TDA</text>
+</svg>
