@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827">
+<title>Trading Decision Assistant</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+header {
+  background: #111827;
+  color: white;
+  padding: 20px;
+}
+
+header h1 {
+  font-size: 22px;
+}
+
+header p {
+  margin-top: 5px;
+  color: #d1d5db;
+  font-size: 13px;
+}
+
+.container {
+  padding: 15px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+
+.coin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coin-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.status {
+  padding: 8px 12px;
+  border-radius: 20px;
+  background: #e5e7eb;
+  font-size: 13px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.good {
+  color: #15803d;
+  font-weight: bold;
+}
+
+.wait {
+  color: #ca8a04;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 9px;
+  background: #111827;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.result {
+  background: #f3f4f6;
+  padding: 12px;
+  border-radius: 9px;
+  margin-top: 12px;
+  line-height: 1.8;
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 5px;
+}
+
+nav button {
+  background: transparent;
+  color: #374151;
+  font-size: 11px;
+  padding: 5px;
+}
+
+main {
+  padding-bottom: 80px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Trading Decision Assistant</h1>
+  <p>Analisis • Risiko • Jurnal</p>
+</header>
+
+<main class="container">
+
+  <div class="card">
+    <div class="coin">
+      <div>
+        <div class="coin-name">BTC/USDT</div>
+        <div class="price" id="price">$--</div>
+      </div>
+
+      <div class="status wait" id="marketStatus">
+        Menunggu data
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Multi-Timeframe</h2>
+
+    <div class="row">
+      <span>1H</span>
+      <span class="good">Bullish</span>
+    </div>
+
+    <div class="row">
+      <span>15M</span>
+      <span class="good">Bullish</span>
+    </div>
+
+    <div class="row">
+      <span>5M</span>
+      <span class="wait">Menunggu</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Checklist Analisis</h2>
+
+    <div class="row">
+      <span>Trend</span>
+      <span class="good">✓</span>
+    </div>
+
+    <div class="row">
+      <span>Volume</span>
+      <span class="good">✓</span>
+    </div>
+
+    <div class="row">
+      <span>Market Structure</span>
+      <span class="good">✓</span>
+    </div>
+
+    <div class="row">
+      <span>Liquidity Sweep</span>
+      <span class="wait">—</span>
+    </div>
+
+    <div class="row">
+      <span>FVG</span>
+      <span class="good">✓</span>
+    </div>
+
+    <div class="row">
+      <span>Kondisi</span>
+      <strong>4 / 5</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Risk Calculator</h2>
+
+    <label>Modal</label>
+    <input type="number" id="modal" placeholder="Contoh: 1000000">
+
+    <label>Risiko (%)</label>
+    <input type="number" id="risk" value="1">
+
+    <label>Entry</label>
+    <input type="number" id="entry" placeholder="Harga entry">
+
+    <label>Stop Loss</label>
+    <input type="number" id="sl" placeholder="Harga stop loss">
+
+    <label>Take Profit</label>
+    <input type="number" id="tp" placeholder="Harga take profit">
+
+    <button onclick="calculateRisk()">Hitung Risiko</button>
+
+    <div class="result" id="riskResult">
+      Masukkan data terlebih dahulu.
+    </div>
+  </div>
+
+</main>
+
+<nav>
+  <button>🏠<br>Dashboard</button>
+  <button>🔎<br>Scanner</button>
+  <button>🧮<br>Risk</button>
+  <button>📒<br>Journal</button>
+  <button>⚙️<br>Setting</button>
+</nav>
+
+<script>
+
+function calculateRisk() {
+
+  const modal = Number(document.getElementById("modal").value);
+  const risk = Number(document.getElementById("risk").value);
+  const entry = Number(document.getElementById("entry").value);
+  const sl = Number(document.getElementById("sl").value);
+  const tp = Number(document.getElementById("tp").value);
+
+  if (!modal || !risk || !entry || !sl || !tp) {
+    document.getElementById("riskResult").innerHTML =
+      "⚠️ Lengkapi semua data.";
+    return;
+  }
+
+  const riskMoney = modal * risk / 100;
+
+  const stopDistance = Math.abs(entry - sl);
+
+  const targetDistance = Math.abs(tp - entry);
+
+  const rr = targetDistance / stopDistance;
+
+  document.getElementById("riskResult").innerHTML =
+
+    "Risiko modal: <b>Rp " +
+    riskMoney.toLocaleString("id-ID") +
+    "</b><br>" +
+
+    "Jarak SL: <b>" +
+    stopDistance.toFixed(4) +
+    "</b><br>" +
+
+    "Jarak TP: <b>" +
+    targetDistance.toFixed(4) +
+    "</b><br>" +
+
+    "Risk / Reward: <b>1 : " +
+    rr.toFixed(2) +
+    "</b>";
+}
+
+</script>
+
+</body>
+  </html>
