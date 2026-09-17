@@ -1,338 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="theme-color" content="#111827">
-
-<meta name="description" content="Trading Decision Assistant - Analisis market dan manajemen risiko">
-
-<title>Trading Decision Assistant</title>
-
-<link rel="manifest" href="manifest.json">
-
-<style>
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: #f3f4f6;
-  color: #111827;
-  padding-bottom: 75px;
-}
-
-header {
-  background: #111827;
-  color: white;
-  padding: 20px 16px;
-}
-
-header h1 {
-  font-size: 22px;
-}
-
-header p {
-  margin-top: 6px;
-  color: #d1d5db;
-  font-size: 13px;
-}
-
-.container {
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
-  padding: 15px;
-}
-
-.card {
-  background: white;
-  border-radius: 14px;
-  padding: 16px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.card h2 {
-  font-size: 17px;
-  margin-bottom: 14px;
-}
-
-.coin {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-.coin-name {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.price {
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-.status {
-  padding: 8px 12px;
-  border-radius: 20px;
-  background: #e5e7eb;
-  font-size: 12px;
-  white-space: nowrap;
-}
-
-.good {
-  color: #15803d;
-  font-weight: bold;
-}
-
-.wait {
-  color: #ca8a04;
-  font-weight: bold;
-}
-
-.bad {
-  color: #dc2626;
-  font-weight: bold;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.row:last-child {
-  border-bottom: none;
-}
-
-label {
-  display: block;
-  font-size: 13px;
-  font-weight: bold;
-  margin-top: 8px;
-}
-
-input,
-select {
-  width: 100%;
-  padding: 12px;
-  margin-top: 6px;
-  margin-bottom: 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 16px;
-  background: white;
-}
-
-button {
-  width: 100%;
-  padding: 13px;
-  border: none;
-  border-radius: 9px;
-  background: #111827;
-  color: white;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-.secondary-button {
-  background: #e5e7eb;
-  color: #111827;
-  margin-top: 8px;
-}
-
-.result {
-  background: #f3f4f6;
-  padding: 13px;
-  border-radius: 9px;
-  margin-top: 12px;
-  line-height: 1.8;
-  font-size: 14px;
-}
-
-.hidden {
-  display: none;
-}
-
-.section-title {
-  font-size: 13px;
-  font-weight: bold;
-  color: #6b7280;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-
-.nav {
-  position: fixed;
-  z-index: 100;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 68px;
-  background: white;
-  border-top: 1px solid #d1d5db;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.nav button {
-  width: 20%;
-  background: transparent;
-  color: #374151;
-  padding: 5px 2px;
-  font-size: 11px;
-  font-weight: normal;
-}
-
-.nav button.active {
-  color: #111827;
-  font-weight: bold;
-}
-
-.nav-icon {
-  display: block;
-  font-size: 19px;
-  margin-bottom: 2px;
-}
-
-.info {
-  padding: 12px;
-  border-radius: 9px;
-  background: #f9fafb;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.warning {
-  padding: 12px;
-  border-radius: 9px;
-  background: #fff7ed;
-  color: #9a3412;
-  font-size: 12px;
-  line-height: 1.6;
-  margin-top: 12px;
-}
-
-@media (max-width: 380px) {
-
-  header h1 {
-    font-size: 19px;
-  }
-
-  .price {
-    font-size: 20px;
-  }
-
-  .card {
-    padding: 14px;
-  }
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<header>
-
-  <h1>Trading Decision Assistant</h1>
-
-  <p>Analisis • Risiko • Jurnal</p>
-
-</header>
-
-
-<main class="container">
-
-
-<!-- DASHBOARD -->
-
-<section id="dashboardSection">
-
-  <div class="card">
-
-    <div class="coin">
-
-      <div>
-
-        <div class="coin-name">BTC/USDT</div>
-
-        <div class="price" id="price">
-          $--
-        </div>
-
-      </div>
-
-      <div class="status wait" id="marketStatus">
-        Menunggu data
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <h2>Multi-Timeframe</h2>
-
-    <div class="row">
-      <span>1H</span>
-      <span class="good">Bullish</span>
-    </div>
-
-    <div class="row">
-      <span>15M</span>
-      <span class="good">Bullish</span>
-    </div>
-
-    <div class="row">
-      <span>5M</span>
-      <span class="wait">Menunggu</span>
-    </div>
-
-    <div class="row">
-      <span>4H</span>
-      <span class="wait">Belum dianalisis</span>
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <h2>Checklist Analisis</h2>
-
-    <div class="row">
-      <span>Trend</span>
-      <span class="good">✓</span>
-    </div>
-
-    <div class="row">
-      <span>Volume</span>
+pan>Volume</span>
       <span class="good">✓</span>
     </div>
 
@@ -636,108 +302,692 @@ button:active {
 <nav class="nav">
 
   <button
+    cla<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#111827">
+<meta name="description" content="Trading Decision Assistant - Analisis market dan manajemen risiko">
+
+<title>Trading Decision Assistant</title>
+
+<link rel="manifest" href="manifest.json">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+header {
+  background: #111827;
+  color: white;
+  padding: 18px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+header p {
+  margin: 5px 0 0;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+main {
+  padding: 15px;
+  padding-bottom: 85px;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 17px;
+}
+
+.price {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.status {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.update {
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 5px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.good {
+  color: #16a34a;
+  font-weight: bold;
+}
+
+.wait {
+  color: #d97706;
+  font-weight: bold;
+}
+
+.bad {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+select,
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 7px 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  font-size: 14px;
+  background: white;
+}
+
+button {
+  width: 100%;
+  border: none;
+  border-radius: 9px;
+  padding: 12px;
+  background: #111827;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.result {
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.warning {
+  background: #fff7ed;
+  color: #9a3412;
+  padding: 10px;
+  border-radius: 9px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid #ddd;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  z-index: 20;
+}
+
+.bottom-nav button {
+  background: white;
+  color: #374151;
+  border-radius: 0;
+  padding: 10px 3px;
+  font-size: 11px;
+}
+
+.bottom-nav button.active {
+  color: #111827;
+  font-weight: bold;
+  background: #f3f4f6;
+}
+
+.small {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.big-result {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 8px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Trading Decision Assistant</h1>
+  <p>Market Analysis & Risk Management</p>
+</header>
+
+<main>
+
+<!-- ================= DASHBOARD ================= -->
+
+<section id="dashboard" class="section active">
+
+  <div class="card">
+    <h2>BTC/USDT</h2>
+
+    <div id="btcPrice" class="price">
+      $--
+    </div>
+
+    <div id="btcStatus" class="status wait">
+      Menghubungkan...
+    </div>
+
+    <div id="btcUpdate" class="update">
+      Menunggu update...
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Multi-Timeframe</h2>
+
+    <div class="row">
+      <span>4H</span>
+      <span class="wait">Belum dianalisis</span>
+    </div>
+
+    <div class="row">
+      <span>1H</span>
+      <span class="good">Bullish</span>
+    </div>
+
+    <div class="row">
+      <span>15M</span>
+      <span class="good">Bullish</span>
+    </div>
+
+    <div class="row">
+      <span>5M</span>
+      <span class="wait">Menunggu</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Market Checklist</h2>
+
+    <div class="row">
+      <span>Trend</span>
+      <span class="good">✓</span>
+    </div>
+
+    <div class="row">
+      <span>Volume</span>
+      <span class="good">✓</span>
+    </div>
+
+    <div class="row">
+      <span>Market Structure</span>
+      <span class="good">✓</span>
+    </div>
+
+    <div class="row">
+      <span>Liquidity Sweep</span>
+      <span class="wait">—</span>
+    </div>
+
+    <div class="row">
+      <span>FVG</span>
+      <span class="good">✓</span>
+    </div>
+
+    <div class="row">
+      <span>Kondisi</span>
+      <span>4 / 5</span>
+    </div>
+
+    <div class="warning">
+      Checklist merupakan alat bantu analisis dan bukan jaminan keuntungan.
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ================= SCANNER ================= -->
+
+<section id="scanner" class="section">
+
+  <div class="card">
+    <h2>Market Scanner</h2>
+
+    <label>Pilih Coin</label>
+
+    <select id="coinSelect">
+      <option value="BTCUSDT">BTC/USDT</option>
+      <option value="ETHUSDT">ETH/USDT</option>
+      <option value="BNBUSDT">BNB/USDT</option>
+      <option value="SOLUSDT">SOL/USDT</option>
+      <option value="XRPUSDT">XRP/USDT</option>
+      <option value="DOGEUSDT">DOGE/USDT</option>
+    </select>
+
+    <button onclick="analyzeCoin()">
+      Analisis Coin
+    </button>
+
+    <div id="scannerResult" class="result">
+      Pilih coin kemudian tekan Analisis Coin.
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ================= RISK ================= -->
+
+<section id="risk" class="section">
+
+  <div class="card">
+
+    <h2>Risk Calculator</h2>
+
+    <label>Modal</label>
+    <input
+      type="number"
+      id="modal"
+      placeholder="Contoh: 1000000"
+    >
+
+    <label>Risk (%)</label>
+    <input
+      type="number"
+      id="riskPercent"
+      placeholder="Contoh: 1"
+      value="1"
+    >
+
+    <label>Entry</label>
+    <input
+      type="number"
+      id="entry"
+      placeholder="Harga entry"
+    >
+
+    <label>Stop Loss</label>
+    <input
+      type="number"
+      id="sl"
+      placeholder="Harga stop loss"
+    >
+
+    <label>Take Profit</label>
+    <input
+      type="number"
+      id="tp"
+      placeholder="Harga take profit"
+    >
+
+    <button onclick="calculateRisk()">
+      Hitung Risiko
+    </button>
+
+    <div id="riskResult" class="result">
+      Masukkan data trading.
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= JOURNAL ================= -->
+
+<section id="journal" class="section">
+
+  <div class="card">
+
+    <h2>Trade Journal</h2>
+
+    <label>Pair</label>
+    <input
+      type="text"
+      id="journalPair"
+      placeholder="BTC/USDT"
+    >
+
+    <label>Entry</label>
+    <input
+      type="number"
+      id="journalEntry"
+    >
+
+    <label>Stop Loss</label>
+    <input
+      type="number"
+      id="journalSL"
+    >
+
+    <label>Take Profit</label>
+    <input
+      type="number"
+      id="journalTP"
+    >
+
+    <label>Catatan</label>
+    <textarea
+      id="journalNote"
+      rows="4"
+      placeholder="Alasan entry, analisis, kondisi market..."
+    ></textarea>
+
+    <button onclick="saveJournal()">
+      Simpan Journal
+    </button>
+
+    <div id="journalResult" class="result">
+      Belum ada journal.
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SETTING ================= -->
+
+<section id="setting" class="section">
+
+  <div class="card">
+
+    <h2>Setting</h2>
+
+    <div class="row">
+      <span>Versi Aplikasi</span>
+      <span>V1.1</span>
+    </div>
+
+    <div class="row">
+      <span>Market Data</span>
+      <span class="good">Binance</span>
+    </div>
+
+    <div class="row">
+      <span>Mode</span>
+      <span>Analysis</span>
+    </div>
+
+    <div class="warning">
+      Aplikasi ini digunakan sebagai alat bantu analisis. 
+      Keputusan trading tetap berada pada pengguna.
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom-nav">
+
+  <button
+    id="navDashboard"
     class="active"
     onclick="showSection('dashboard', this)"
   >
-    <span class="nav-icon">🏠</span>
-    Dashboard
+    🏠<br>Dashboard
   </button>
-
 
   <button
     onclick="showSection('scanner', this)"
   >
-    <span class="nav-icon">🔎</span>
-    Scanner
+    🔎<br>Scanner
   </button>
-
 
   <button
     onclick="showSection('risk', this)"
   >
-    <span class="nav-icon">🧮</span>
-    Risk
+    📊<br>Risk
   </button>
-
 
   <button
     onclick="showSection('journal', this)"
   >
-    <span class="nav-icon">📒</span>
-    Journal
+    📝<br>Journal
   </button>
 
-
   <button
-    onclick="showSection('settings', this)"
+    onclick="showSection('setting', this)"
   >
-    <span class="nav-icon">⚙️</span>
-    Setting
+    ⚙️<br>Setting
   </button>
 
 </nav>
 
 
+<!-- ================= JAVASCRIPT ================= -->
+
 <script>
+
+/* =========================
+   NAVIGASI
+========================= */
+
+function showSection(sectionId, button) {
+
+  document.querySelectorAll(".section")
+    .forEach(section => {
+      section.classList.remove("active");
+    });
+
+  document.getElementById(sectionId)
+    .classList.add("active");
+
+  document.querySelectorAll(".bottom-nav button")
+    .forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+  button.classList.add("active");
+}
 
 
 /* =========================
-   NAVIGATION
+   BINANCE REAL-TIME BTC
 ========================= */
 
-function showSection(section, button) {
+let btcSocket = null;
 
-  const sections = [
-    "dashboardSection",
-    "scannerSection",
-    "riskSection",
-    "journalSection",
-    "settingsSection"
-  ];
+function connectBTCPrice() {
 
-  sections.forEach(id => {
+  const priceElement =
+    document.getElementById("btcPrice");
 
-    document.getElementById(id).classList.add("hidden");
+  const statusElement =
+    document.getElementById("btcStatus");
 
-  });
+  const updateElement =
+    document.getElementById("btcUpdate");
+
+  if (!priceElement || !statusElement) {
+    return;
+  }
+
+  statusElement.textContent =
+    "Menghubungkan...";
+
+  statusElement.className =
+    "status wait";
+
+  try {
+
+    btcSocket = new WebSocket(
+      "wss://stream.binance.com:9443/ws/btcusdt@trade"
+    );
+
+    btcSocket.onopen = function () {
+
+      statusElement.textContent =
+        "● Real-time";
+
+      statusElement.className =
+        "status good";
+    };
 
 
-  document
-    .getElementById(section + "Section")
-    .classList.remove("hidden");
+    btcSocket.onmessage = function(event) {
+
+      try {
+
+        const data =
+          JSON.parse(event.data);
+
+        const price =
+          Number(data.p);
+
+        if (!isNaN(price)) {
+
+          priceElement.textContent =
+            "$" +
+            price.toLocaleString(
+              "en-US",
+              {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              }
+            );
+
+          const waktu =
+            new Date();
+
+          updateElement.textContent =
+            "Update: " +
+            waktu.toLocaleTimeString(
+              "id-ID"
+            );
+        }
+
+      } catch(error) {
+
+        console.log(
+          "Data Binance tidak valid",
+          error
+        );
+
+      }
+
+    };
 
 
-  document
-    .querySelectorAll(".nav button")
-    .forEach(btn => {
+    btcSocket.onerror = function() {
 
-      btn.classList.remove("active");
+      statusElement.textContent =
+        "● Koneksi bermasalah";
 
-    });
+      statusElement.className =
+        "status bad";
+    };
 
 
-  button.classList.add("active");
+    btcSocket.onclose = function() {
+
+      statusElement.textContent =
+        "● Terputus";
+
+      statusElement.className =
+        "status bad";
+
+      setTimeout(
+        connectBTCPrice,
+        5000
+      );
+
+    };
+
+  } catch(error) {
+
+    statusElement.textContent =
+      "● Gagal terhubung";
+
+    statusElement.className =
+      "status bad";
+
+  }
 
 }
 
 
 /* =========================
-   COIN SELECT
+   SCANNER
 ========================= */
 
-function selectCoin() {
-
-  const select =
-    document.getElementById("coinSelect");
+function analyzeCoin() {
 
   const coin =
-    select.options[select.selectedIndex].text;
+    document.getElementById(
+      "coinSelect"
+    ).value;
 
-  alert(
-    "Coin yang dipilih: " +
-    coin +
-    "\n\nAnalisis real-time akan kita aktifkan pada tahap berikutnya."
-  );
+  const result =
+    document.getElementById(
+      "scannerResult"
+    );
+
+  result.innerHTML =
+
+    "<b>" +
+    coin.replace("USDT", "/USDT") +
+    "</b><br><br>" +
+
+    "Trend: Menunggu analisis<br>" +
+    "Market Structure: Menunggu<br>" +
+    "Liquidity Sweep: Menunggu<br>" +
+    "FVG: Menunggu<br>" +
+    "Signal: Belum tersedia";
 
 }
 
@@ -749,96 +999,102 @@ function selectCoin() {
 function calculateRisk() {
 
   const modal =
-    Number(document.getElementById("modal").value);
+    Number(
+      document.getElementById("modal").value
+    );
 
-  const risk =
-    Number(document.getElementById("risk").value);
+  const riskPercent =
+    Number(
+      document.getElementById(
+        "riskPercent"
+      ).value
+    );
 
   const entry =
-    Number(document.getElementById("entry").value);
+    Number(
+      document.getElementById("entry").value
+    );
 
   const sl =
-    Number(document.getElementById("sl").value);
+    Number(
+      document.getElementById("sl").value
+    );
 
   const tp =
-    Number(document.getElementById("tp").value);
-
+    Number(
+      document.getElementById("tp").value
+    );
 
   const result =
-    document.getElementById("riskResult");
+    document.getElementById(
+      "riskResult"
+    );
 
 
   if (
     modal <= 0 ||
-    risk <= 0 ||
+    riskPercent <= 0 ||
     entry <= 0 ||
     sl <= 0 ||
     tp <= 0
   ) {
 
     result.innerHTML =
-      "⚠️ Lengkapi semua data dengan angka yang valid.";
+      "Lengkapi semua data terlebih dahulu.";
 
     return;
-
   }
 
 
   const riskMoney =
-    modal * risk / 100;
+    modal *
+    (riskPercent / 100);
 
 
-  const stopDistance =
+  const slDistance =
     Math.abs(entry - sl);
 
 
-  const targetDistance =
+  const tpDistance =
     Math.abs(tp - entry);
 
 
-  if (stopDistance === 0) {
-
-    result.innerHTML =
-      "⚠️ Entry dan Stop Loss tidak boleh sama.";
-
-    return;
-
-  }
-
-
   const rr =
-    targetDistance / stopDistance;
+    tpDistance /
+    slDistance;
 
 
   const positionSize =
-    riskMoney / stopDistance;
+    riskMoney /
+    slDistance;
 
 
   result.innerHTML =
 
-    "Modal: <b>Rp " +
+    "<b>Hasil Perhitungan</b><br><br>" +
+
+    "Modal: " +
     modal.toLocaleString("id-ID") +
-    "</b><br>" +
+    "<br>" +
 
-    "Risiko maksimal: <b>Rp " +
+    "Risiko: " +
     riskMoney.toLocaleString("id-ID") +
-    "</b><br>" +
+    "<br>" +
 
-    "Jarak SL: <b>" +
-    stopDistance.toFixed(4) +
-    "</b><br>" +
+    "Jarak SL: " +
+    slDistance.toFixed(4) +
+    "<br>" +
 
-    "Jarak TP: <b>" +
-    targetDistance.toFixed(4) +
-    "</b><br>" +
+    "Jarak TP: " +
+    tpDistance.toFixed(4) +
+    "<br>" +
 
-    "Risk / Reward: <b>1 : " +
+    "Risk / Reward: 1 : " +
     rr.toFixed(2) +
-    "</b><br>" +
+    "<br>" +
 
-    "Ukuran posisi teoritis: <b>" +
-    positionSize.toFixed(6) +
-    "</b>";
+    "Estimasi Position Size: " +
+    positionSize.toFixed(6);
 
 }
 
@@ -850,29 +1106,29 @@ function calculateRisk() {
 function saveJournal() {
 
   const pair =
-    document.getElementById("journalPair").value.trim();
+    document.getElementById(
+      "journalPair"
+    ).value;
 
   const entry =
-    document.getElementById("journalEntry").value;
+    document.getElementById(
+      "journalEntry"
+    ).value;
 
   const sl =
-    document.getElementById("journalSL").value;
+    document.getElementById(
+      "journalSL"
+    ).value;
 
   const tp =
-    document.getElementById("journalTP").value;
+    document.getElementById(
+      "journalTP"
+    ).value;
 
   const note =
-    document.getElementById("journalNote").value.trim();
-
-
-  if (!pair || !entry || !sl || !tp) {
-
-    document.getElementById("journalResult").innerHTML =
-      "⚠️ Lengkapi Pair, Entry, SL, dan TP.";
-
-    return;
-
-  }
+    document.getElementById(
+      "journalNote"
+    ).value;
 
 
   const journal = {
@@ -887,7 +1143,10 @@ function saveJournal() {
 
     note: note,
 
-    date: new Date().toLocaleString("id-ID")
+    date:
+      new Date().toLocaleString(
+        "id-ID"
+      )
 
   };
 
@@ -898,70 +1157,101 @@ function saveJournal() {
   );
 
 
-  document.getElementById("journalResult").innerHTML =
-
-    "<b>Journal tersimpan.</b><br><br>" +
-
-    "Pair: " + pair + "<br>" +
-
-    "Entry: " + entry + "<br>" +
-
-    "SL: " + sl + "<br>" +
-
-    "TP: " + tp + "<br>" +
-
-    "Catatan: " + (note || "-") + "<br>" +
-
-    "Tanggal: " + journal.date;
+  displayJournal(journal);
 
 }
 
 
-/* =========================
-   LOAD JOURNAL
-========================= */
+function displayJournal(journal) {
+
+  const result =
+    document.getElementById(
+      "journalResult"
+    );
+
+  result.innerHTML =
+
+    "<b>" +
+    (journal.pair || "-") +
+    "</b><br><br>" +
+
+    "Entry: " +
+    (journal.entry || "-") +
+    "<br>" +
+
+    "SL: " +
+    (journal.sl || "-") +
+    "<br>" +
+
+    "TP: " +
+    (journal.tp || "-") +
+    "<br><br>" +
+
+    "Catatan:<br>" +
+    (journal.note || "-") +
+
+    "<br><br>" +
+
+    "<span class='small'>" +
+    journal.date +
+    "</span>";
+
+}
+
 
 function loadJournal() {
 
   const saved =
-    localStorage.getItem("tda_last_journal");
+    localStorage.getItem(
+      "tda_last_journal"
+    );
 
-
-  if (!saved) return;
-
+  if (!saved) {
+    return;
+  }
 
   try {
 
     const journal =
       JSON.parse(saved);
 
+    document.getElementById(
+      "journalPair"
+    ).value =
+      journal.pair || "";
 
-    document.getElementById("journalResult").innerHTML =
+    document.getElementById(
+      "journalEntry"
+    ).value =
+      journal.entry || "";
 
-      "<b>Journal terakhir</b><br><br>" +
+    document.getElementById(
+      "journalSL"
+    ).value =
+      journal.sl || "";
 
-      "Pair: " + journal.pair + "<br>" +
+    document.getElementById(
+      "journalTP"
+    ).value =
+      journal.tp || "";
 
-      "Entry: " + journal.entry + "<br>" +
+    document.getElementById(
+      "journalNote"
+    ).value =
+      journal.note || "";
 
-      "SL: " + journal.sl + "<br>" +
+    displayJournal(journal);
 
-      "TP: " + journal.tp + "<br>" +
+  } catch(error) {
 
-      "Catatan: " + (journal.note || "-") + "<br>" +
-
-      "Tanggal: " + journal.date;
-
-  } catch (error) {
-
-    console.log("Data journal tidak dapat dibaca.");
+    console.log(
+      "Journal tidak dapat dimuat",
+      error
+    );
 
   }
 
 }
-
-
-loadJournal();
 
 
 /* =========================
@@ -970,33 +1260,50 @@ loadJournal();
 
 if ("serviceWorker" in navigator) {
 
-  window.addEventListener("load", () => {
+  window.addEventListener(
+    "load",
+    function() {
 
-    navigator.serviceWorker
-      .register("sw.js")
-      .then(() => {
+      navigator.serviceWorker
+        .register("sw.js")
+        .then(function() {
 
-        console.log(
-          "Service Worker aktif"
-        );
+          console.log(
+            "Service Worker aktif"
+          );
 
-      })
-      .catch(error => {
+        })
+        .catch(function(error) {
 
-        console.log(
-          "Service Worker gagal:",
-          error
-        );
+          console.log(
+            "Service Worker gagal:",
+            error
+          );
 
-      });
+        });
 
-  });
+    }
+  );
 
 }
 
+
+/* =========================
+   START APP
+========================= */
+
+window.addEventListener(
+  "load",
+  function() {
+
+    connectBTCPrice();
+
+    loadJournal();
+
+  }
+);
+
 </script>
 
-
 </body>
-
       </html>
