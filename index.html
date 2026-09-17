@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <meta name="theme-color" content="#111827">
+
+<meta name="description" content="Trading Decision Assistant - Analisis market dan manajemen risiko">
+
 <title>Trading Decision Assistant</title>
+
 <link rel="manifest" href="manifest.json">
+
 <style>
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -17,12 +27,13 @@ body {
   font-family: Arial, sans-serif;
   background: #f3f4f6;
   color: #111827;
+  padding-bottom: 75px;
 }
 
 header {
   background: #111827;
   color: white;
-  padding: 20px;
+  padding: 20px 16px;
 }
 
 header h1 {
@@ -30,15 +41,16 @@ header h1 {
 }
 
 header p {
-  margin-top: 5px;
+  margin-top: 6px;
   color: #d1d5db;
   font-size: 13px;
 }
 
 .container {
-  padding: 15px;
+  width: 100%;
   max-width: 600px;
   margin: auto;
+  padding: 15px;
 }
 
 .card {
@@ -58,6 +70,7 @@ header p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 
 .coin-name {
@@ -75,18 +88,8 @@ header p {
   padding: 8px 12px;
   border-radius: 20px;
   background: #e5e7eb;
-  font-size: 13px;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.row:last-child {
-  border-bottom: none;
+  font-size: 12px;
+  white-space: nowrap;
 }
 
 .good {
@@ -99,7 +102,33 @@ header p {
   font-weight: bold;
 }
 
-input {
+.bad {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+input,
+select {
   width: 100%;
   padding: 12px;
   margin-top: 6px;
@@ -107,6 +136,7 @@ input {
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 16px;
+  background: white;
 }
 
 button {
@@ -116,66 +146,157 @@ button {
   border-radius: 9px;
   background: #111827;
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.secondary-button {
+  background: #e5e7eb;
+  color: #111827;
+  margin-top: 8px;
 }
 
 .result {
   background: #f3f4f6;
-  padding: 12px;
+  padding: 13px;
   border-radius: 9px;
   margin-top: 12px;
   line-height: 1.8;
+  font-size: 14px;
 }
 
-nav {
+.hidden {
+  display: none;
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #6b7280;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.nav {
   position: fixed;
+  z-index: 100;
   bottom: 0;
   left: 0;
   right: 0;
+  height: 68px;
   background: white;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #d1d5db;
   display: flex;
   justify-content: space-around;
-  padding: 10px 5px;
+  align-items: center;
 }
 
-nav button {
+.nav button {
+  width: 20%;
   background: transparent;
   color: #374151;
+  padding: 5px 2px;
   font-size: 11px;
-  padding: 5px;
+  font-weight: normal;
 }
 
-main {
-  padding-bottom: 80px;
+.nav button.active {
+  color: #111827;
+  font-weight: bold;
 }
+
+.nav-icon {
+  display: block;
+  font-size: 19px;
+  margin-bottom: 2px;
+}
+
+.info {
+  padding: 12px;
+  border-radius: 9px;
+  background: #f9fafb;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.warning {
+  padding: 12px;
+  border-radius: 9px;
+  background: #fff7ed;
+  color: #9a3412;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+@media (max-width: 380px) {
+
+  header h1 {
+    font-size: 19px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
 <header>
+
   <h1>Trading Decision Assistant</h1>
+
   <p>Analisis • Risiko • Jurnal</p>
+
 </header>
+
 
 <main class="container">
 
+
+<!-- DASHBOARD -->
+
+<section id="dashboardSection">
+
   <div class="card">
+
     <div class="coin">
+
       <div>
+
         <div class="coin-name">BTC/USDT</div>
-        <div class="price" id="price">$--</div>
+
+        <div class="price" id="price">
+          $--
+        </div>
+
       </div>
 
       <div class="status wait" id="marketStatus">
         Menunggu data
       </div>
+
     </div>
+
   </div>
 
+
   <div class="card">
+
     <h2>Multi-Timeframe</h2>
 
     <div class="row">
@@ -192,9 +313,17 @@ main {
       <span>5M</span>
       <span class="wait">Menunggu</span>
     </div>
+
+    <div class="row">
+      <span>4H</span>
+      <span class="wait">Belum dianalisis</span>
+    </div>
+
   </div>
 
+
   <div class="card">
+
     <h2>Checklist Analisis</h2>
 
     <div class="row">
@@ -226,70 +355,472 @@ main {
       <span>Kondisi</span>
       <strong>4 / 5</strong>
     </div>
+
+    <div class="warning">
+      Checklist ini hanya membantu menyusun analisis. 
+      Bukan jaminan keuntungan atau kepastian arah harga.
+    </div>
+
   </div>
 
+</section>
+
+
+<!-- SCANNER -->
+
+<section id="scannerSection" class="hidden">
+
   <div class="card">
+
+    <h2>Market Scanner</h2>
+
+    <label>Pilih Coin</label>
+
+    <select id="coinSelect">
+
+      <option value="BTCUSDT">BTC/USDT</option>
+      <option value="ETHUSDT">ETH/USDT</option>
+      <option value="BNBUSDT">BNB/USDT</option>
+      <option value="SOLUSDT">SOL/USDT</option>
+      <option value="XRPUSDT">XRP/USDT</option>
+      <option value="DOGEUSDT">DOGE/USDT</option>
+
+    </select>
+
+    <button onclick="selectCoin()">
+      Analisis Coin
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>Hasil Scanner</h2>
+
+    <div class="row">
+      <span>Trend</span>
+      <span class="wait">Menunggu data</span>
+    </div>
+
+    <div class="row">
+      <span>Volume</span>
+      <span class="wait">Menunggu data</span>
+    </div>
+
+    <div class="row">
+      <span>Structure</span>
+      <span class="wait">Menunggu data</span>
+    </div>
+
+    <div class="row">
+      <span>Liquidity</span>
+      <span class="wait">Menunggu data</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- RISK -->
+
+<section id="riskSection" class="hidden">
+
+  <div class="card">
+
     <h2>Risk Calculator</h2>
 
     <label>Modal</label>
-    <input type="number" id="modal" placeholder="Contoh: 1000000">
+
+    <input
+      type="number"
+      id="modal"
+      placeholder="Contoh: 1000000"
+    >
+
 
     <label>Risiko (%)</label>
-    <input type="number" id="risk" value="1">
+
+    <input
+      type="number"
+      id="risk"
+      value="1"
+      min="0.1"
+      step="0.1"
+    >
+
 
     <label>Entry</label>
-    <input type="number" id="entry" placeholder="Harga entry">
+
+    <input
+      type="number"
+      id="entry"
+      placeholder="Harga entry"
+      step="any"
+    >
+
 
     <label>Stop Loss</label>
-    <input type="number" id="sl" placeholder="Harga stop loss">
+
+    <input
+      type="number"
+      id="sl"
+      placeholder="Harga stop loss"
+      step="any"
+    >
+
 
     <label>Take Profit</label>
-    <input type="number" id="tp" placeholder="Harga take profit">
 
-    <button onclick="calculateRisk()">Hitung Risiko</button>
+    <input
+      type="number"
+      id="tp"
+      placeholder="Harga take profit"
+      step="any"
+    >
 
-    <div class="result" id="riskResult">
+
+    <button onclick="calculateRisk()">
+      Hitung Risiko
+    </button>
+
+
+    <div
+      class="result"
+      id="riskResult"
+    >
       Masukkan data terlebih dahulu.
     </div>
+
   </div>
+
+</section>
+
+
+<!-- JOURNAL -->
+
+<section id="journalSection" class="hidden">
+
+  <div class="card">
+
+    <h2>Trade Journal</h2>
+
+    <div class="info">
+
+      Journal digunakan untuk mencatat keputusan trading
+      dan hasilnya agar dapat dievaluasi kembali.
+
+    </div>
+
+    <br>
+
+    <label>Pair</label>
+
+    <input
+      type="text"
+      id="journalPair"
+      placeholder="BTC/USDT"
+    >
+
+
+    <label>Entry</label>
+
+    <input
+      type="number"
+      id="journalEntry"
+      placeholder="Harga entry"
+      step="any"
+    >
+
+
+    <label>Stop Loss</label>
+
+    <input
+      type="number"
+      id="journalSL"
+      placeholder="Harga SL"
+      step="any"
+    >
+
+
+    <label>Take Profit</label>
+
+    <input
+      type="number"
+      id="journalTP"
+      placeholder="Harga TP"
+      step="any"
+    >
+
+
+    <label>Catatan / Alasan</label>
+
+    <input
+      type="text"
+      id="journalNote"
+      placeholder="Contoh: FVG + liquidity sweep"
+    >
+
+
+    <button onclick="saveJournal()">
+      Simpan Journal
+    </button>
+
+
+    <div
+      class="result"
+      id="journalResult"
+    >
+      Belum ada catatan.
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section id="settingsSection" class="hidden">
+
+  <div class="card">
+
+    <h2>Settings</h2>
+
+    <div class="row">
+      <span>Mode</span>
+      <strong>Personal</strong>
+    </div>
+
+    <div class="row">
+      <span>Data</span>
+      <strong>Local Device</strong>
+    </div>
+
+    <div class="row">
+      <span>Exchange</span>
+      <strong>Belum terhubung</strong>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>Informasi</h2>
+
+    <div class="info">
+
+      Trading Decision Assistant merupakan alat bantu
+      analisis dan pencatatan.
+
+      <br><br>
+
+      Keputusan transaksi tetap berada pada pengguna.
+      Data market dan hasil analisis perlu diverifikasi
+      sebelum digunakan.
+
+    </div>
+
+  </div>
+
+</section>
+
 
 </main>
 
-<nav>
-  <button>🏠<br>Dashboard</button>
-  <button>🔎<br>Scanner</button>
-  <button>🧮<br>Risk</button>
-  <button>📒<br>Journal</button>
-  <button>⚙️<br>Setting</button>
+
+<!-- NAVIGATION -->
+
+<nav class="nav">
+
+  <button
+    class="active"
+    onclick="showSection('dashboard', this)"
+  >
+    <span class="nav-icon">🏠</span>
+    Dashboard
+  </button>
+
+
+  <button
+    onclick="showSection('scanner', this)"
+  >
+    <span class="nav-icon">🔎</span>
+    Scanner
+  </button>
+
+
+  <button
+    onclick="showSection('risk', this)"
+  >
+    <span class="nav-icon">🧮</span>
+    Risk
+  </button>
+
+
+  <button
+    onclick="showSection('journal', this)"
+  >
+    <span class="nav-icon">📒</span>
+    Journal
+  </button>
+
+
+  <button
+    onclick="showSection('settings', this)"
+  >
+    <span class="nav-icon">⚙️</span>
+    Setting
+  </button>
+
 </nav>
+
 
 <script>
 
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showSection(section, button) {
+
+  const sections = [
+    "dashboardSection",
+    "scannerSection",
+    "riskSection",
+    "journalSection",
+    "settingsSection"
+  ];
+
+  sections.forEach(id => {
+
+    document.getElementById(id).classList.add("hidden");
+
+  });
+
+
+  document
+    .getElementById(section + "Section")
+    .classList.remove("hidden");
+
+
+  document
+    .querySelectorAll(".nav button")
+    .forEach(btn => {
+
+      btn.classList.remove("active");
+
+    });
+
+
+  button.classList.add("active");
+
+}
+
+
+/* =========================
+   COIN SELECT
+========================= */
+
+function selectCoin() {
+
+  const select =
+    document.getElementById("coinSelect");
+
+  const coin =
+    select.options[select.selectedIndex].text;
+
+  alert(
+    "Coin yang dipilih: " +
+    coin +
+    "\n\nAnalisis real-time akan kita aktifkan pada tahap berikutnya."
+  );
+
+}
+
+
+/* =========================
+   RISK CALCULATOR
+========================= */
+
 function calculateRisk() {
 
-  const modal = Number(document.getElementById("modal").value);
-  const risk = Number(document.getElementById("risk").value);
-  const entry = Number(document.getElementById("entry").value);
-  const sl = Number(document.getElementById("sl").value);
-  const tp = Number(document.getElementById("tp").value);
+  const modal =
+    Number(document.getElementById("modal").value);
 
-  if (!modal || !risk || !entry || !sl || !tp) {
-    document.getElementById("riskResult").innerHTML =
-      "⚠️ Lengkapi semua data.";
+  const risk =
+    Number(document.getElementById("risk").value);
+
+  const entry =
+    Number(document.getElementById("entry").value);
+
+  const sl =
+    Number(document.getElementById("sl").value);
+
+  const tp =
+    Number(document.getElementById("tp").value);
+
+
+  const result =
+    document.getElementById("riskResult");
+
+
+  if (
+    modal <= 0 ||
+    risk <= 0 ||
+    entry <= 0 ||
+    sl <= 0 ||
+    tp <= 0
+  ) {
+
+    result.innerHTML =
+      "⚠️ Lengkapi semua data dengan angka yang valid.";
+
     return;
+
   }
 
-  const riskMoney = modal * risk / 100;
 
-  const stopDistance = Math.abs(entry - sl);
+  const riskMoney =
+    modal * risk / 100;
 
-  const targetDistance = Math.abs(tp - entry);
 
-  const rr = targetDistance / stopDistance;
+  const stopDistance =
+    Math.abs(entry - sl);
 
-  document.getElementById("riskResult").innerHTML =
 
-    "Risiko modal: <b>Rp " +
+  const targetDistance =
+    Math.abs(tp - entry);
+
+
+  if (stopDistance === 0) {
+
+    result.innerHTML =
+      "⚠️ Entry dan Stop Loss tidak boleh sama.";
+
+    return;
+
+  }
+
+
+  const rr =
+    targetDistance / stopDistance;
+
+
+  const positionSize =
+    riskMoney / stopDistance;
+
+
+  result.innerHTML =
+
+    "Modal: <b>Rp " +
+    modal.toLocaleString("id-ID") +
+    "</b><br>" +
+
+    "Risiko maksimal: <b>Rp " +
     riskMoney.toLocaleString("id-ID") +
     "</b><br>" +
 
@@ -303,18 +834,169 @@ function calculateRisk() {
 
     "Risk / Reward: <b>1 : " +
     rr.toFixed(2) +
+    "</b><br>" +
+
+    "Ukuran posisi teoritis: <b>" +
+    positionSize.toFixed(6) +
     "</b>";
+
+}
+
+
+/* =========================
+   JOURNAL
+========================= */
+
+function saveJournal() {
+
+  const pair =
+    document.getElementById("journalPair").value.trim();
+
+  const entry =
+    document.getElementById("journalEntry").value;
+
+  const sl =
+    document.getElementById("journalSL").value;
+
+  const tp =
+    document.getElementById("journalTP").value;
+
+  const note =
+    document.getElementById("journalNote").value.trim();
+
+
+  if (!pair || !entry || !sl || !tp) {
+
+    document.getElementById("journalResult").innerHTML =
+      "⚠️ Lengkapi Pair, Entry, SL, dan TP.";
+
+    return;
+
+  }
+
+
+  const journal = {
+
+    pair: pair,
+
+    entry: entry,
+
+    sl: sl,
+
+    tp: tp,
+
+    note: note,
+
+    date: new Date().toLocaleString("id-ID")
+
+  };
+
+
+  localStorage.setItem(
+    "tda_last_journal",
+    JSON.stringify(journal)
+  );
+
+
+  document.getElementById("journalResult").innerHTML =
+
+    "<b>Journal tersimpan.</b><br><br>" +
+
+    "Pair: " + pair + "<br>" +
+
+    "Entry: " + entry + "<br>" +
+
+    "SL: " + sl + "<br>" +
+
+    "TP: " + tp + "<br>" +
+
+    "Catatan: " + (note || "-") + "<br>" +
+
+    "Tanggal: " + journal.date;
+
+}
+
+
+/* =========================
+   LOAD JOURNAL
+========================= */
+
+function loadJournal() {
+
+  const saved =
+    localStorage.getItem("tda_last_journal");
+
+
+  if (!saved) return;
+
+
+  try {
+
+    const journal =
+      JSON.parse(saved);
+
+
+    document.getElementById("journalResult").innerHTML =
+
+      "<b>Journal terakhir</b><br><br>" +
+
+      "Pair: " + journal.pair + "<br>" +
+
+      "Entry: " + journal.entry + "<br>" +
+
+      "SL: " + journal.sl + "<br>" +
+
+      "TP: " + journal.tp + "<br>" +
+
+      "Catatan: " + (journal.note || "-") + "<br>" +
+
+      "Tanggal: " + journal.date;
+
+  } catch (error) {
+
+    console.log("Data journal tidak dapat dibaca.");
+
+  }
+
+}
+
+
+loadJournal();
+
+
+/* =========================
+   SERVICE WORKER
+========================= */
+
+if ("serviceWorker" in navigator) {
+
+  window.addEventListener("load", () => {
+
+    navigator.serviceWorker
+      .register("sw.js")
+      .then(() => {
+
+        console.log(
+          "Service Worker aktif"
+        );
+
+      })
+      .catch(error => {
+
+        console.log(
+          "Service Worker gagal:",
+          error
+        );
+
+      });
+
+  });
+
 }
 
 </script>
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js")
-      .then(() => console.log("Service Worker aktif"))
-      .catch(error => console.log("Service Worker gagal:", error));
-  });
-}
-</script>
+
+
 </body>
-  </html>
+
+      </html>
