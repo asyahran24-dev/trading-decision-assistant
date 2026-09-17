@@ -1,319 +1,10 @@
-pan>Volume</span>
-      <span class="good">✓</span>
-    </div>
-
-    <div class="row">
-      <span>Market Structure</span>
-      <span class="good">✓</span>
-    </div>
-
-    <div class="row">
-      <span>Liquidity Sweep</span>
-      <span class="wait">—</span>
-    </div>
-
-    <div class="row">
-      <span>FVG</span>
-      <span class="good">✓</span>
-    </div>
-
-    <div class="row">
-      <span>Kondisi</span>
-      <strong>4 / 5</strong>
-    </div>
-
-    <div class="warning">
-      Checklist ini hanya membantu menyusun analisis. 
-      Bukan jaminan keuntungan atau kepastian arah harga.
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- SCANNER -->
-
-<section id="scannerSection" class="hidden">
-
-  <div class="card">
-
-    <h2>Market Scanner</h2>
-
-    <label>Pilih Coin</label>
-
-    <select id="coinSelect">
-
-      <option value="BTCUSDT">BTC/USDT</option>
-      <option value="ETHUSDT">ETH/USDT</option>
-      <option value="BNBUSDT">BNB/USDT</option>
-      <option value="SOLUSDT">SOL/USDT</option>
-      <option value="XRPUSDT">XRP/USDT</option>
-      <option value="DOGEUSDT">DOGE/USDT</option>
-
-    </select>
-
-    <button onclick="selectCoin()">
-      Analisis Coin
-    </button>
-
-  </div>
-
-
-  <div class="card">
-
-    <h2>Hasil Scanner</h2>
-
-    <div class="row">
-      <span>Trend</span>
-      <span class="wait">Menunggu data</span>
-    </div>
-
-    <div class="row">
-      <span>Volume</span>
-      <span class="wait">Menunggu data</span>
-    </div>
-
-    <div class="row">
-      <span>Structure</span>
-      <span class="wait">Menunggu data</span>
-    </div>
-
-    <div class="row">
-      <span>Liquidity</span>
-      <span class="wait">Menunggu data</span>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- RISK -->
-
-<section id="riskSection" class="hidden">
-
-  <div class="card">
-
-    <h2>Risk Calculator</h2>
-
-    <label>Modal</label>
-
-    <input
-      type="number"
-      id="modal"
-      placeholder="Contoh: 1000000"
-    >
-
-
-    <label>Risiko (%)</label>
-
-    <input
-      type="number"
-      id="risk"
-      value="1"
-      min="0.1"
-      step="0.1"
-    >
-
-
-    <label>Entry</label>
-
-    <input
-      type="number"
-      id="entry"
-      placeholder="Harga entry"
-      step="any"
-    >
-
-
-    <label>Stop Loss</label>
-
-    <input
-      type="number"
-      id="sl"
-      placeholder="Harga stop loss"
-      step="any"
-    >
-
-
-    <label>Take Profit</label>
-
-    <input
-      type="number"
-      id="tp"
-      placeholder="Harga take profit"
-      step="any"
-    >
-
-
-    <button onclick="calculateRisk()">
-      Hitung Risiko
-    </button>
-
-
-    <div
-      class="result"
-      id="riskResult"
-    >
-      Masukkan data terlebih dahulu.
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- JOURNAL -->
-
-<section id="journalSection" class="hidden">
-
-  <div class="card">
-
-    <h2>Trade Journal</h2>
-
-    <div class="info">
-
-      Journal digunakan untuk mencatat keputusan trading
-      dan hasilnya agar dapat dievaluasi kembali.
-
-    </div>
-
-    <br>
-
-    <label>Pair</label>
-
-    <input
-      type="text"
-      id="journalPair"
-      placeholder="BTC/USDT"
-    >
-
-
-    <label>Entry</label>
-
-    <input
-      type="number"
-      id="journalEntry"
-      placeholder="Harga entry"
-      step="any"
-    >
-
-
-    <label>Stop Loss</label>
-
-    <input
-      type="number"
-      id="journalSL"
-      placeholder="Harga SL"
-      step="any"
-    >
-
-
-    <label>Take Profit</label>
-
-    <input
-      type="number"
-      id="journalTP"
-      placeholder="Harga TP"
-      step="any"
-    >
-
-
-    <label>Catatan / Alasan</label>
-
-    <input
-      type="text"
-      id="journalNote"
-      placeholder="Contoh: FVG + liquidity sweep"
-    >
-
-
-    <button onclick="saveJournal()">
-      Simpan Journal
-    </button>
-
-
-    <div
-      class="result"
-      id="journalResult"
-    >
-      Belum ada catatan.
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- SETTINGS -->
-
-<section id="settingsSection" class="hidden">
-
-  <div class="card">
-
-    <h2>Settings</h2>
-
-    <div class="row">
-      <span>Mode</span>
-      <strong>Personal</strong>
-    </div>
-
-    <div class="row">
-      <span>Data</span>
-      <strong>Local Device</strong>
-    </div>
-
-    <div class="row">
-      <span>Exchange</span>
-      <strong>Belum terhubung</strong>
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <h2>Informasi</h2>
-
-    <div class="info">
-
-      Trading Decision Assistant merupakan alat bantu
-      analisis dan pencatatan.
-
-      <br><br>
-
-      Keputusan transaksi tetap berada pada pengguna.
-      Data market dan hasil analisis perlu diverifikasi
-      sebelum digunakan.
-
-    </div>
-
-  </div>
-
-</section>
-
-
-</main>
-
-
-<!-- NAVIGATION -->
-
-<nav class="nav">
-
-  <button
-    cla<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta name="theme-color" content="#111827">
-<meta name="description" content="Trading Decision Assistant - Analisis market dan manajemen risiko">
-
 <title>Trading Decision Assistant</title>
-
-<link rel="manifest" href="manifest.json">
 
 <style>
 * {
@@ -332,9 +23,6 @@ header {
   color: white;
   padding: 18px;
   text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 10;
 }
 
 header h1 {
@@ -345,158 +33,102 @@ header h1 {
 header p {
   margin: 5px 0 0;
   font-size: 12px;
-  opacity: 0.8;
 }
 
 main {
   padding: 15px;
-  padding-bottom: 85px;
+  padding-bottom: 80px;
 }
 
-.section {
+.page {
   display: none;
 }
 
-.section.active {
+.page.active {
   display: block;
 }
 
 .card {
   background: white;
-  border-radius: 14px;
   padding: 16px;
   margin-bottom: 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-}
-
-.card h2 {
-  margin-top: 0;
-  font-size: 17px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
 }
 
 .price {
   font-size: 30px;
   font-weight: bold;
-  margin: 10px 0;
+  margin: 12px 0;
 }
 
-.status {
-  font-size: 13px;
-  font-weight: bold;
-}
-
-.update {
-  font-size: 11px;
-  color: #6b7280;
-  margin-top: 5px;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  padding: 9px 0;
-  border-bottom: 1px solid #e5e7eb;
-  font-size: 14px;
-}
-
-.row:last-child {
-  border-bottom: none;
-}
-
-.good {
-  color: #16a34a;
-  font-weight: bold;
-}
-
-.wait {
-  color: #d97706;
-  font-weight: bold;
-}
-
-.bad {
-  color: #dc2626;
-  font-weight: bold;
-}
-
+button,
 select,
 input,
 textarea {
   width: 100%;
   padding: 12px;
-  margin: 7px 0 12px;
-  border: 1px solid #d1d5db;
+  margin-top: 8px;
+  margin-bottom: 10px;
   border-radius: 9px;
   font-size: 14px;
-  background: white;
 }
 
 button {
-  width: 100%;
   border: none;
-  border-radius: 9px;
-  padding: 12px;
   background: #111827;
   color: white;
-  font-size: 14px;
   font-weight: bold;
-  cursor: pointer;
 }
 
-button:active {
-  transform: scale(0.98);
+input,
+select,
+textarea {
+  border: 1px solid #d1d5db;
+  background: white;
 }
 
 .result {
   background: #f9fafb;
-  border-radius: 10px;
   padding: 12px;
-  margin-top: 10px;
-}
-
-.warning {
-  background: #fff7ed;
-  color: #9a3412;
-  padding: 10px;
   border-radius: 9px;
-  font-size: 12px;
   margin-top: 10px;
 }
 
-.bottom-nav {
+.bottom {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  height: 65px;
   background: white;
   border-top: 1px solid #ddd;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  z-index: 20;
+  grid-template-columns: repeat(5,1fr);
 }
 
-.bottom-nav button {
+.bottom button {
   background: white;
   color: #374151;
   border-radius: 0;
-  padding: 10px 3px;
+  margin: 0;
+  padding: 5px;
   font-size: 11px;
 }
 
-.bottom-nav button.active {
-  color: #111827;
+.bottom button.active {
+  background: #e5e7eb;
   font-weight: bold;
-  background: #f3f4f6;
 }
 
-.small {
-  font-size: 12px;
-  color: #6b7280;
+.green {
+  color: #16a34a;
+  font-weight: bold;
 }
 
-.big-result {
-  font-size: 22px;
+.orange {
+  color: #d97706;
   font-weight: bold;
-  margin: 8px 0;
 }
 </style>
 </head>
@@ -504,806 +136,427 @@ button:active {
 <body>
 
 <header>
-  <h1>Trading Decision Assistant</h1>
-  <p>Market Analysis & Risk Management</p>
+<h1>Trading Decision Assistant</h1>
+<p>Market Analysis & Risk Management</p>
 </header>
 
 <main>
 
-<!-- ================= DASHBOARD ================= -->
+<!-- DASHBOARD -->
+<section id="dashboard" class="page active">
 
-<section id="dashboard" class="section active">
+<div class="card">
+<h2>BTC/USDT</h2>
 
-  <div class="card">
-    <h2>BTC/USDT</h2>
+<div id="btcPrice" class="price">
+$--
+</div>
 
-    <div id="btcPrice" class="price">
-      $--
-    </div>
+<div id="btcStatus" class="orange">
+Menunggu data
+</div>
 
-    <div id="btcStatus" class="status wait">
-      Menghubungkan...
-    </div>
+<p id="btcUpdate">
+Belum ada update
+</p>
+</div>
 
-    <div id="btcUpdate" class="update">
-      Menunggu update...
-    </div>
-  </div>
+<div class="card">
+<h2>Multi-Timeframe</h2>
 
-  <div class="card">
-    <h2>Multi-Timeframe</h2>
+<p>4H : <b>Belum dianalisis</b></p>
+<p>1H : <span class="green">Bullish</span></p>
+<p>15M : <span class="green">Bullish</span></p>
+<p>5M : <span class="orange">Menunggu</span></p>
+</div>
 
-    <div class="row">
-      <span>4H</span>
-      <span class="wait">Belum dianalisis</span>
-    </div>
+<div class="card">
+<h2>Market Checklist</h2>
 
-    <div class="row">
-      <span>1H</span>
-      <span class="good">Bullish</span>
-    </div>
+<p>✓ Trend</p>
+<p>✓ Volume</p>
+<p>✓ Market Structure</p>
+<p>— Liquidity Sweep</p>
+<p>✓ FVG</p>
 
-    <div class="row">
-      <span>15M</span>
-      <span class="good">Bullish</span>
-    </div>
-
-    <div class="row">
-      <span>5M</span>
-      <span class="wait">Menunggu</span>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Market Checklist</h2>
-
-    <div class="row">
-      <span>Trend</span>
-      <span class="good">✓</span>
-    </div>
-
-    <div class="row">
-      <span>Volume</span>
-      <span class="good">✓</span>
-    </div>
-
-    <div class="row">
-      <span>Market Structure</span>
-      <span class="good">✓</span>
-    </div>
-
-    <div class="row">
-      <span>Liquidity Sweep</span>
-      <span class="wait">—</span>
-    </div>
-
-    <div class="row">
-      <span>FVG</span>
-      <span class="good">✓</span>
-    </div>
-
-    <div class="row">
-      <span>Kondisi</span>
-      <span>4 / 5</span>
-    </div>
-
-    <div class="warning">
-      Checklist merupakan alat bantu analisis dan bukan jaminan keuntungan.
-    </div>
-  </div>
+</div>
 
 </section>
 
 
-<!-- ================= SCANNER ================= -->
+<!-- SCANNER -->
+<section id="scanner" class="page">
 
-<section id="scanner" class="section">
+<div class="card">
 
-  <div class="card">
-    <h2>Market Scanner</h2>
+<h2>Market Scanner</h2>
 
-    <label>Pilih Coin</label>
+<select id="coin">
+<option value="BTCUSDT">BTC/USDT</option>
+<option value="ETHUSDT">ETH/USDT</option>
+<option value="BNBUSDT">BNB/USDT</option>
+<option value="SOLUSDT">SOL/USDT</option>
+<option value="XRPUSDT">XRP/USDT</option>
+<option value="DOGEUSDT">DOGE/USDT</option>
+</select>
 
-    <select id="coinSelect">
-      <option value="BTCUSDT">BTC/USDT</option>
-      <option value="ETHUSDT">ETH/USDT</option>
-      <option value="BNBUSDT">BNB/USDT</option>
-      <option value="SOLUSDT">SOL/USDT</option>
-      <option value="XRPUSDT">XRP/USDT</option>
-      <option value="DOGEUSDT">DOGE/USDT</option>
-    </select>
+<button onclick="scanCoin()">
+Analisis Coin
+</button>
 
-    <button onclick="analyzeCoin()">
-      Analisis Coin
-    </button>
+<div id="scanResult" class="result">
+Belum ada analisis.
+</div>
 
-    <div id="scannerResult" class="result">
-      Pilih coin kemudian tekan Analisis Coin.
-    </div>
-  </div>
-
-</section>
-
-
-<!-- ================= RISK ================= -->
-
-<section id="risk" class="section">
-
-  <div class="card">
-
-    <h2>Risk Calculator</h2>
-
-    <label>Modal</label>
-    <input
-      type="number"
-      id="modal"
-      placeholder="Contoh: 1000000"
-    >
-
-    <label>Risk (%)</label>
-    <input
-      type="number"
-      id="riskPercent"
-      placeholder="Contoh: 1"
-      value="1"
-    >
-
-    <label>Entry</label>
-    <input
-      type="number"
-      id="entry"
-      placeholder="Harga entry"
-    >
-
-    <label>Stop Loss</label>
-    <input
-      type="number"
-      id="sl"
-      placeholder="Harga stop loss"
-    >
-
-    <label>Take Profit</label>
-    <input
-      type="number"
-      id="tp"
-      placeholder="Harga take profit"
-    >
-
-    <button onclick="calculateRisk()">
-      Hitung Risiko
-    </button>
-
-    <div id="riskResult" class="result">
-      Masukkan data trading.
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- ================= JOURNAL ================= -->
+<!-- RISK -->
+<section id="risk" class="page">
 
-<section id="journal" class="section">
+<div class="card">
 
-  <div class="card">
+<h2>Risk Calculator</h2>
 
-    <h2>Trade Journal</h2>
+<input id="modal" type="number" placeholder="Modal">
 
-    <label>Pair</label>
-    <input
-      type="text"
-      id="journalPair"
-      placeholder="BTC/USDT"
-    >
+<input id="riskPercent" type="number" value="1" placeholder="Risk %">
 
-    <label>Entry</label>
-    <input
-      type="number"
-      id="journalEntry"
-    >
+<input id="entry" type="number" placeholder="Entry">
 
-    <label>Stop Loss</label>
-    <input
-      type="number"
-      id="journalSL"
-    >
+<input id="sl" type="number" placeholder="Stop Loss">
 
-    <label>Take Profit</label>
-    <input
-      type="number"
-      id="journalTP"
-    >
+<input id="tp" type="number" placeholder="Take Profit">
 
-    <label>Catatan</label>
-    <textarea
-      id="journalNote"
-      rows="4"
-      placeholder="Alasan entry, analisis, kondisi market..."
-    ></textarea>
+<button onclick="calculateRisk()">
+Hitung Risiko
+</button>
 
-    <button onclick="saveJournal()">
-      Simpan Journal
-    </button>
+<div id="riskResult" class="result">
+Masukkan data.
+</div>
 
-    <div id="journalResult" class="result">
-      Belum ada journal.
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- ================= SETTING ================= -->
+<!-- JOURNAL -->
+<section id="journal" class="page">
 
-<section id="setting" class="section">
+<div class="card">
 
-  <div class="card">
+<h2>Trade Journal</h2>
 
-    <h2>Setting</h2>
+<input id="pair" placeholder="Pair">
 
-    <div class="row">
-      <span>Versi Aplikasi</span>
-      <span>V1.1</span>
-    </div>
+<input id="journalEntry" type="number" placeholder="Entry">
 
-    <div class="row">
-      <span>Market Data</span>
-      <span class="good">Binance</span>
-    </div>
+<input id="journalSL" type="number" placeholder="Stop Loss">
 
-    <div class="row">
-      <span>Mode</span>
-      <span>Analysis</span>
-    </div>
+<input id="journalTP" type="number" placeholder="Take Profit">
 
-    <div class="warning">
-      Aplikasi ini digunakan sebagai alat bantu analisis. 
-      Keputusan trading tetap berada pada pengguna.
-    </div>
+<textarea id="note" rows="4" placeholder="Catatan"></textarea>
 
-  </div>
+<button onclick="saveJournal()">
+Simpan Journal
+</button>
+
+<div id="journalResult" class="result">
+Belum ada journal.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SETTING -->
+<section id="setting" class="page">
+
+<div class="card">
+
+<h2>Setting</h2>
+
+<p>Nama aplikasi:</p>
+<b>Trading Decision Assistant</b>
+
+<p>Versi:</p>
+<b>1.0</b>
+
+<p>Mode:</p>
+<b>Analysis Assistant</b>
+
+</div>
 
 </section>
 
 </main>
 
 
-<!-- ================= BOTTOM NAV ================= -->
+<!-- MENU BAWAH -->
 
-<nav class="bottom-nav">
+<nav class="bottom">
 
-  <button
-    id="navDashboard"
-    class="active"
-    onclick="showSection('dashboard', this)"
-  >
-    🏠<br>Dashboard
-  </button>
+<button onclick="openPage('dashboard', this)" class="active">
+🏠<br>Dashboard
+</button>
 
-  <button
-    onclick="showSection('scanner', this)"
-  >
-    🔎<br>Scanner
-  </button>
+<button onclick="openPage('scanner', this)">
+🔎<br>Scanner
+</button>
 
-  <button
-    onclick="showSection('risk', this)"
-  >
-    📊<br>Risk
-  </button>
+<button onclick="openPage('risk', this)">
+📊<br>Risk
+</button>
 
-  <button
-    onclick="showSection('journal', this)"
-  >
-    📝<br>Journal
-  </button>
+<button onclick="openPage('journal', this)">
+📝<br>Journal
+</button>
 
-  <button
-    onclick="showSection('setting', this)"
-  >
-    ⚙️<br>Setting
-  </button>
+<button onclick="openPage('setting', this)">
+⚙️<br>Setting
+</button>
 
 </nav>
 
 
-<!-- ================= JAVASCRIPT ================= -->
-
 <script>
 
-/* =========================
-   NAVIGASI
-========================= */
+function openPage(pageId, button) {
 
-function showSection(sectionId, button) {
+  var pages = document.querySelectorAll(".page");
 
-  document.querySelectorAll(".section")
-    .forEach(section => {
-      section.classList.remove("active");
-    });
+  pages.forEach(function(page) {
+    page.classList.remove("active");
+  });
 
-  document.getElementById(sectionId)
-    .classList.add("active");
+  document.getElementById(pageId).classList.add("active");
 
-  document.querySelectorAll(".bottom-nav button")
-    .forEach(btn => {
-      btn.classList.remove("active");
-    });
+  var buttons = document.querySelectorAll(".bottom button");
+
+  buttons.forEach(function(btn) {
+    btn.classList.remove("active");
+  });
 
   button.classList.add("active");
 }
 
 
-/* =========================
-   BINANCE REAL-TIME BTC
-========================= */
+function scanCoin() {
 
-let btcSocket = null;
+  var coin =
+    document.getElementById("coin").value;
 
-function connectBTCPrice() {
-
-  const priceElement =
-    document.getElementById("btcPrice");
-
-  const statusElement =
-    document.getElementById("btcStatus");
-
-  const updateElement =
-    document.getElementById("btcUpdate");
-
-  if (!priceElement || !statusElement) {
-    return;
-  }
-
-  statusElement.textContent =
-    "Menghubungkan...";
-
-  statusElement.className =
-    "status wait";
-
-  try {
-
-    btcSocket = new WebSocket(
-      "wss://stream.binance.com:9443/ws/btcusdt@trade"
-    );
-
-    btcSocket.onopen = function () {
-
-      statusElement.textContent =
-        "● Real-time";
-
-      statusElement.className =
-        "status good";
-    };
-
-
-    btcSocket.onmessage = function(event) {
-
-      try {
-
-        const data =
-          JSON.parse(event.data);
-
-        const price =
-          Number(data.p);
-
-        if (!isNaN(price)) {
-
-          priceElement.textContent =
-            "$" +
-            price.toLocaleString(
-              "en-US",
-              {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-              }
-            );
-
-          const waktu =
-            new Date();
-
-          updateElement.textContent =
-            "Update: " +
-            waktu.toLocaleTimeString(
-              "id-ID"
-            );
-        }
-
-      } catch(error) {
-
-        console.log(
-          "Data Binance tidak valid",
-          error
-        );
-
-      }
-
-    };
-
-
-    btcSocket.onerror = function() {
-
-      statusElement.textContent =
-        "● Koneksi bermasalah";
-
-      statusElement.className =
-        "status bad";
-    };
-
-
-    btcSocket.onclose = function() {
-
-      statusElement.textContent =
-        "● Terputus";
-
-      statusElement.className =
-        "status bad";
-
-      setTimeout(
-        connectBTCPrice,
-        5000
-      );
-
-    };
-
-  } catch(error) {
-
-    statusElement.textContent =
-      "● Gagal terhubung";
-
-    statusElement.className =
-      "status bad";
-
-  }
-
-}
-
-
-/* =========================
-   SCANNER
-========================= */
-
-function analyzeCoin() {
-
-  const coin =
-    document.getElementById(
-      "coinSelect"
-    ).value;
-
-  const result =
-    document.getElementById(
-      "scannerResult"
-    );
-
-  result.innerHTML =
-
-    "<b>" +
-    coin.replace("USDT", "/USDT") +
-    "</b><br><br>" +
-
-    "Trend: Menunggu analisis<br>" +
+  document.getElementById("scanResult").innerHTML =
+    "<b>" + coin + "</b><br><br>" +
+    "Trend: Menunggu<br>" +
     "Market Structure: Menunggu<br>" +
     "Liquidity Sweep: Menunggu<br>" +
-    "FVG: Menunggu<br>" +
-    "Signal: Belum tersedia";
-
+    "FVG: Menunggu<br><br>" +
+    "<b>Signal: Belum tersedia</b>";
 }
 
-
-/* =========================
-   RISK CALCULATOR
-========================= */
 
 function calculateRisk() {
 
-  const modal =
-    Number(
-      document.getElementById("modal").value
-    );
+  var modal =
+    Number(document.getElementById("modal").value);
 
-  const riskPercent =
-    Number(
-      document.getElementById(
-        "riskPercent"
-      ).value
-    );
+  var risk =
+    Number(document.getElementById("riskPercent").value);
 
-  const entry =
-    Number(
-      document.getElementById("entry").value
-    );
+  var entry =
+    Number(document.getElementById("entry").value);
 
-  const sl =
-    Number(
-      document.getElementById("sl").value
-    );
+  var sl =
+    Number(document.getElementById("sl").value);
 
-  const tp =
-    Number(
-      document.getElementById("tp").value
-    );
+  var tp =
+    Number(document.getElementById("tp").value);
 
-  const result =
-    document.getElementById(
-      "riskResult"
-    );
+  if (!modal || !risk || !entry || !sl || !tp) {
 
-
-  if (
-    modal <= 0 ||
-    riskPercent <= 0 ||
-    entry <= 0 ||
-    sl <= 0 ||
-    tp <= 0
-  ) {
-
-    result.innerHTML =
-      "Lengkapi semua data terlebih dahulu.";
+    document.getElementById("riskResult").innerHTML =
+      "Lengkapi semua data.";
 
     return;
   }
 
+  var riskMoney =
+    modal * risk / 100;
 
-  const riskMoney =
-    modal *
-    (riskPercent / 100);
-
-
-  const slDistance =
+  var slDistance =
     Math.abs(entry - sl);
 
-
-  const tpDistance =
+  var tpDistance =
     Math.abs(tp - entry);
 
+  var rr =
+    tpDistance / slDistance;
 
-  const rr =
-    tpDistance /
-    slDistance;
-
-
-  const positionSize =
-    riskMoney /
-    slDistance;
-
-
-  result.innerHTML =
-
-    "<b>Hasil Perhitungan</b><br><br>" +
-
-    "Modal: " +
-    modal.toLocaleString("id-ID") +
-    "<br>" +
-
-    "Risiko: " +
+  document.getElementById("riskResult").innerHTML =
+    "<b>Hasil</b><br><br>" +
+    "Risiko uang: Rp " +
     riskMoney.toLocaleString("id-ID") +
     "<br>" +
-
     "Jarak SL: " +
-    slDistance.toFixed(4) +
+    slDistance +
     "<br>" +
-
     "Jarak TP: " +
-    tpDistance.toFixed(4) +
+    tpDistance +
     "<br>" +
-
-    "Risk / Reward: 1 : " +
-    rr.toFixed(2) +
-    "<br>" +
-
-    "Estimasi Position Size: " +
-    positionSize.toFixed(6);
-
+    "Risk/Reward: 1 : " +
+    rr.toFixed(2);
 }
 
-
-/* =========================
-   JOURNAL
-========================= */
 
 function saveJournal() {
 
-  const pair =
-    document.getElementById(
-      "journalPair"
-    ).value;
+  var pair =
+    document.getElementById("pair").value;
 
-  const entry =
-    document.getElementById(
-      "journalEntry"
-    ).value;
+  var entry =
+    document.getElementById("journalEntry").value;
 
-  const sl =
-    document.getElementById(
-      "journalSL"
-    ).value;
+  var sl =
+    document.getElementById("journalSL").value;
 
-  const tp =
-    document.getElementById(
-      "journalTP"
-    ).value;
+  var tp =
+    document.getElementById("journalTP").value;
 
-  const note =
-    document.getElementById(
-      "journalNote"
-    ).value;
+  var note =
+    document.getElementById("note").value;
 
+  if (!pair) {
 
-  const journal = {
+    alert("Masukkan Pair terlebih dahulu.");
+
+    return;
+  }
+
+  var data = {
 
     pair: pair,
-
     entry: entry,
-
     sl: sl,
-
     tp: tp,
-
     note: note,
-
-    date:
-      new Date().toLocaleString(
-        "id-ID"
-      )
+    date: new Date().toLocaleString("id-ID")
 
   };
 
-
   localStorage.setItem(
-    "tda_last_journal",
-    JSON.stringify(journal)
+    "tdaJournal",
+    JSON.stringify(data)
   );
 
-
-  displayJournal(journal);
-
+  showJournal(data);
 }
 
 
-function displayJournal(journal) {
+function showJournal(data) {
 
-  const result =
-    document.getElementById(
-      "journalResult"
-    );
+  document.getElementById("journalResult").innerHTML =
 
-  result.innerHTML =
+    "<b>" + data.pair + "</b><br><br>" +
 
-    "<b>" +
-    (journal.pair || "-") +
-    "</b><br><br>" +
+    "Entry: " + data.entry + "<br>" +
 
-    "Entry: " +
-    (journal.entry || "-") +
-    "<br>" +
+    "SL: " + data.sl + "<br>" +
 
-    "SL: " +
-    (journal.sl || "-") +
-    "<br>" +
+    "TP: " + data.tp + "<br><br>" +
 
-    "TP: " +
-    (journal.tp || "-") +
-    "<br><br>" +
+    "Catatan:<br>" + data.note + "<br><br>" +
 
-    "Catatan:<br>" +
-    (journal.note || "-") +
-
-    "<br><br>" +
-
-    "<span class='small'>" +
-    journal.date +
-    "</span>";
-
+    "<small>" + data.date + "</small>";
 }
 
 
 function loadJournal() {
 
-  const saved =
-    localStorage.getItem(
-      "tda_last_journal"
-    );
+  var saved =
+    localStorage.getItem("tdaJournal");
 
-  if (!saved) {
-    return;
-  }
+  if (!saved) return;
 
   try {
 
-    const journal =
+    var data =
       JSON.parse(saved);
 
-    document.getElementById(
-      "journalPair"
-    ).value =
-      journal.pair || "";
+    document.getElementById("pair").value =
+      data.pair || "";
 
-    document.getElementById(
-      "journalEntry"
-    ).value =
-      journal.entry || "";
+    document.getElementById("journalEntry").value =
+      data.entry || "";
 
-    document.getElementById(
-      "journalSL"
-    ).value =
-      journal.sl || "";
+    document.getElementById("journalSL").value =
+      data.sl || "";
 
-    document.getElementById(
-      "journalTP"
-    ).value =
-      journal.tp || "";
+    document.getElementById("journalTP").value =
+      data.tp || "";
 
-    document.getElementById(
-      "journalNote"
-    ).value =
-      journal.note || "";
+    document.getElementById("note").value =
+      data.note || "";
 
-    displayJournal(journal);
+    showJournal(data);
 
-  } catch(error) {
+  } catch(e) {
 
-    console.log(
-      "Journal tidak dapat dimuat",
-      error
+    console.log(e);
+
+  }
+}
+
+
+/*
+   UNTUK SEMENTARA:
+   Harga BTC dibuat simulasi.
+   Setelah tombol dipastikan normal,
+   kita sambungkan ke Binance.
+*/
+
+function testPrice() {
+
+  var price =
+    100000 +
+    Math.random() * 1000;
+
+  document.getElementById("btcPrice").innerHTML =
+    "$" +
+    price.toLocaleString(
+      "en-US",
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }
     );
 
-  }
+  document.getElementById("btcStatus").innerHTML =
+    "● Sistem aktif";
 
+  document.getElementById("btcStatus").className =
+    "green";
+
+  document.getElementById("btcUpdate").innerHTML =
+    "Update: " +
+    new Date().toLocaleTimeString("id-ID");
 }
 
 
-/* =========================
-   SERVICE WORKER
-========================= */
+window.addEventListener("load", function() {
 
-if ("serviceWorker" in navigator) {
+  loadJournal();
 
-  window.addEventListener(
-    "load",
-    function() {
+  testPrice();
 
-      navigator.serviceWorker
-        .register("sw.js")
-        .then(function() {
+});
 
-          console.log(
-            "Service Worker aktif"
-          );
-
-        })
-        .catch(function(error) {
-
-          console.log(
-            "Service Worker gagal:",
-            error
-          );
-
-        });
-
-    }
-  );
-
-}
-
-
-/* =========================
-   START APP
-========================= */
-
-window.addEventListener(
-  "load",
-  function() {
-
-    connectBTCPrice();
-
-    loadJournal();
-
-  }
-);
 
 </script>
 
 </body>
-      </html>
+</html>
